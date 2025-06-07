@@ -1,0 +1,157 @@
+.flyx {
+  --#{$prefix}-color-primary: #{$primary};
+  --#{$prefix}-color-border: #{$border};
+  --#{$prefix}-color-draggable-bg: #{$draggable-bg};
+  --#{$prefix}-color-input-bg: #{$input-bg};
+  --#{$prefix}-font-family-sans: #{$font-family-sans};
+  --#{$prefix}-font-size: 0.8125rem;
+  --#{$prefix}-line-height: 20px;
+  --#{$prefix}-draggable-width: 2rem;
+  --#{$prefix}-drop-area-border: #{$drop-area-border};
+  --#{$prefix}-drop-area-hover: #{$drop-area-hover};
+  --#{$prefix}-drop-area-icon-bg: #{$drop-area-icon-bg};
+  --#{$prefix}-drop-area-icon-border: #{$drop-area-icon-border};
+
+  width: 100%;
+
+  * {
+    box-sizing: border-box;
+    font-family: var(--#{$prefix}-font-family-sans);
+    font-size: var(--#{$prefix}-font-size);
+    line-height: var(--#{$prefix}-line-height);
+    color: var(--#{$prefix}-color-primary);
+  }
+
+  .flyx__zone {
+    border: 2px solid var(--#{$prefix}-color-border);
+    border-bottom: 0;
+  }
+
+  .flyx__item,
+  .flyx__draggable,
+  .flyx__content {
+    display: flex;
+  }
+
+  .flyx__item:not(:last-of-type) {
+    border-bottom: 1px solid var(--#{$prefix}-color-border);
+  }
+
+  .flyx__draggable {
+    width: var(--#{$prefix}-draggable-width);
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+    background: var(--#{$prefix}-color-draggable-bg);
+    border-right: 1px solid var(--#{$prefix}-color-border);
+  }
+
+  .flyx__content {
+    align-items: center;
+    padding: 18px;
+    position: relative;
+    flex: 1;
+
+    &,
+    .flyx__content--right {
+        gap: 1.125rem;
+    }
+
+    .flyx__content--right {
+        display: flex;
+        align-items: center;
+    }
+
+    .flyx__alt { flex: 1; }
+
+    .flyx__image {
+      display: inline-block;
+      height: 100%;
+
+      img {
+        width: 4rem;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .flyx__infos {
+      display: flex;
+      flex-direction: column;
+      width: 8rem;
+    }
+
+    .flyx__alt__input {
+      width: 100%;
+      outline: 0;
+      border: 0;
+      background: var(--#{$prefix}-color-input-bg);
+      padding: 0.25rem 0.5rem;
+    }
+
+    .flyx__row--remove {
+      display: inline-flex;
+      position: absolute;
+      top: 1.125rem;
+      right: 1.125rem;
+      cursor: pointer;
+    }
+  }
+
+  .flyx__add-button,
+  .flyx__add-button--drop-area {
+    width: 100%;
+  }
+
+  .flyx__add-button--drop-area {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 2px dashed var(--#{$prefix}-drop-area-border);
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover { background: var(--#{$prefix}-drop-area-hover); }
+  }
+
+  .flyx__add-button--drop-area__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--#{$prefix}-draggable-width) + .125rem);
+    border-right: 1px solid var(--#{$prefix}-color-border);
+    padding: 0.5rem 0;
+
+    .square {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: var(--#{$prefix}-drop-area-icon-bg);
+      border-radius: 50%;
+      border: 1px solid var(--#{$prefix}-drop-area-icon-border);
+      box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
+    }
+  }
+
+  .flyx__add-button--drop-area__text {
+    padding: 8px 18px;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .flyx__input-file--hidden { display: none; }
+
+  @media (max-width: 991px) {
+    .flyx__content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .flyx__alt {
+        width: 100%;
+    }
+  }
+}

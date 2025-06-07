@@ -1,0 +1,13 @@
+{
+  "name": "flyx",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "sass --watch src/assets/scss:src/assets/css --style=compressed --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.89.1"
+  }
+}
