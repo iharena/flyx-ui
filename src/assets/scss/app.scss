@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'components/flyx';
+@use 'variables';
+@use 'components/flyx';
 
 // TODO: REMOVE this
 body {
@@ -7,6 +7,8 @@ body {
     width: 50%;
     margin: 0 auto;
     display: flex;
+    gap: 24px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
