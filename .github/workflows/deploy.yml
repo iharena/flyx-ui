@@ -31,12 +31,6 @@ jobs:
           cp -r src/assets/css dist/css
           cp -r src/assets/images dist/images
 
-      - name: Fix asset paths for GitHub Pages
-        run: |
-          find dist -name "*.html" -exec sed -i \
-            -e 's|href="assets/|href="/flyx-ui/assets/|g' \
-            -e 's|src="assets/|src="/flyx-ui/assets/|g' {} +
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
