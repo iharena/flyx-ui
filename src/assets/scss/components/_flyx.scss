@@ -1,39 +1,44 @@
 @use "../variables";
 
 .flyx {
-  // --- CSS Custom Properties ---
-  --#{variables.$prefix}-color-primary: #{variables.$primary};
-  --#{variables.$prefix}-color-border: #{variables.$border};
-  --#{variables.$prefix}-color-draggable-bg: #{variables.$draggable-bg};
-  --#{variables.$prefix}-color-input-bg: #{variables.$input-bg};
-  --#{variables.$prefix}-font-family-sans: #{variables.$font-family-sans};
-  --#{variables.$prefix}-font-size: 0.8125rem;
-  --#{variables.$prefix}-line-height: 20px;
-  --#{variables.$prefix}-draggable-width: 2rem;
-  --#{variables.$prefix}-drop-area-border: #{variables.$drop-area-border};
-  --#{variables.$prefix}-drop-area-hover: #{variables.$drop-area-hover};
-  --#{variables.$prefix}-drop-area-icon-bg: #{variables.$drop-area-icon-bg};
-  --#{variables.$prefix}-drop-area-icon-border: #{variables.$drop-area-icon-border};
-  --#{variables.$prefix}-drop-area-icon-squares: #{variables.$drop-area-icon-squares};
+  // --- CSS Variables ---
+  @each $name, $value in (
+    color-primary: variables.$primary,
+    color-border: variables.$border,
+    color-draggable-bg: variables.$draggable-bg,
+    color-input-bg: variables.$input-bg,
+    font-family-sans: variables.$font-family-sans,
+    font-size: 0.8125rem,
+    line-height: 20px,
+    draggable-width: 2rem,
+    drop-area-border: variables.$drop-area-border,
+    drop-area-hover: variables.$drop-area-hover,
+    drop-area-icon-bg: variables.$drop-area-icon-bg,
+    drop-area-icon-border: variables.$drop-area-icon-border,
+    drop-area-icon-squares: variables.$drop-area-icon-squares
+  ) {
+    --#{variables.$prefix}-#{$name}: #{$value};
+  }
 
   width: 100%;
 
-  // --- Global Styles for Children ---
-  * {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     font-family: var(--#{variables.$prefix}-font-family-sans);
     font-size: var(--#{variables.$prefix}-font-size);
     line-height: var(--#{variables.$prefix}-line-height);
     color: var(--#{variables.$prefix}-color-primary);
+    margin: 0;
+    padding: 0;
   }
 
-  // --- Layout Zones ---
   .flyx__zone {
     border: 2px solid var(--#{variables.$prefix}-color-border);
     border-bottom: 0;
   }
 
-  // --- Flex Groups ---
   .flyx__item,
   .flyx__draggable,
   .flyx__content {
@@ -44,7 +49,6 @@
     border-bottom: 1px solid var(--#{variables.$prefix}-color-border);
   }
 
-  // --- Draggable Handler ---
   .flyx__draggable {
     width: var(--#{variables.$prefix}-draggable-width);
     align-items: center;
@@ -52,14 +56,15 @@
     cursor: move;
     background: var(--#{variables.$prefix}-color-draggable-bg);
     border-right: 1px solid var(--#{variables.$prefix}-color-border);
+    user-select: none;
+    -webkit-user-drag: element;
   }
 
-  // --- Content Block ---
   .flyx__content {
     align-items: center;
-    padding: 18px;
+    padding: 1.125rem;
     position: relative;
-    flex: 1;
+    flex: 1 1 0;
     gap: 1.125rem;
 
     .flyx__content--right {
@@ -76,21 +81,21 @@
       position: relative;
       border: 2px solid #51498240;
       cursor: pointer;
-      position: relative;
 
       img {
         width: 4rem;
         height: 100%;
         object-fit: cover;
+        display: block;
       }
 
       button.flyx__replace {
-        border: unset!important;
+        border: none;
         position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background: #fff;
         border-radius: 50%;
         width: 1.5rem;
         height: 1.5rem;
@@ -100,27 +105,24 @@
         opacity: 0;
         transition: opacity 0.3s;
         cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
       }
 
       &::before {
         content: '';
-        display: block;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: transparent;
-        transition: all 0.3s;
+        inset: 0;
+        background: transparent;
+        transition: background 0.3s;
       }
 
-      &:hover button.flyx__replace {
-        opacity: 1;
-      }
-
-      &:hover::before {
-        background-color: #bbb7cebf;
-      }
+      &:hover button.flyx__replace { opacity: 1; }
+      &:hover::before { background: #bbb7cebf; }
     }
 
     .flyx__infos {
@@ -131,10 +133,12 @@
 
     .flyx__alt__input {
       width: 100%;
-      outline: 0;
-      border: 0;
+      border: none;
       background: var(--#{variables.$prefix}-color-input-bg);
       padding: 0.25rem 0.5rem;
+      outline: none;
+      border-radius: 3px;
+      min-width: 0;
     }
 
     .flyx__row--remove {
@@ -143,10 +147,12 @@
       top: 1.125rem;
       right: 1.125rem;
       cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0;
     }
   }
 
-  // --- Add Button ---
   .flyx__add-button,
   .flyx__add-button--drop-area {
     width: 100%;
@@ -160,9 +166,7 @@
     cursor: pointer;
     transition: background 0.3s;
 
-    &:hover {
-      background: var(--#{variables.$prefix}-drop-area-hover);
-    }
+    &:hover { background: var(--#{variables.$prefix}-drop-area-hover); }
 
     &__icon {
       display: flex;
@@ -173,7 +177,6 @@
       padding: 0.5rem 0;
 
       .square {
-        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -183,24 +186,25 @@
         border-radius: 50%;
         border: 1px solid var(--#{variables.$prefix}-drop-area-icon-border);
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+        position: relative;
         z-index: 1;
       }
     }
 
     &__text {
-      padding: 8px 18px;
+      padding: 0.5rem 1.125rem;
       width: 100%;
       cursor: pointer;
       text-align: left;
+      user-select: none;
     }
   }
 
-  .flyx__input-file--hidden { display: none; }
+  .flyx__input-file--hidden { display: none !important; }
 
-  // --- Empty State ---
   &.flyx--empty .flyx__add-button--drop-area__icon {
     position: relative;
-    border-right: unset;
+    border-right: none;
     width: 80px;
     height: 68px;
     padding: 1rem 0;
@@ -216,16 +220,11 @@
       width: 2.875rem;
       height: 2.875rem;
       background: var(--#{variables.$prefix}-drop-area-icon-square);
-      padding: unset;
       z-index: 0;
     }
 
-    &::before {
-      transform: translate(-50%, -50%) rotate(5deg);
-    }
-    &::after {
-      background-color: var(--#{variables.$prefix}-drop-area-icon-squares);
-    }
+    &::before { transform: translate(-50%, -50%) rotate(5deg); }
+    &::after { background: var(--#{variables.$prefix}-drop-area-icon-squares); }
   }
 
   // --- Responsive ---
@@ -233,7 +232,9 @@
     .flyx__content {
       flex-direction: column;
       align-items: flex-start;
+      gap: 0.75rem;
     }
     .flyx__alt { width: 100%; }
+    .flyx__infos { width: 100%; }
   }
 }
