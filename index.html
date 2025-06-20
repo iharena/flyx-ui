@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyx - The Next Generation Laravel Form Uploader</title>
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div class="flyx">
+        <div class="flyx__zone">
+            <div class="flyx__item">
+                <div class="flyx__draggable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </div>
+                <div class="flyx__content">
+                    <div class="flyx__content--right">
+                        <div class="flyx__image">
+                            <img src="../assets/images/me_blue.jpg" alt="Iharena Dev" />
+
+                            <button class="flyx__replace">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flyx__infos">
+                            <div>PNG</div>
+                            <div>10.01 KB</div>
+                            <div>
+                                <a href="#">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flyx__alt flyx__content--left">
+                        <label for="media-name">Name</label>
+                        <input type="text" id="media-name" class="flyx__alt__input" value="Iharena__image-1.png"/>
+                    </div>
+                    <div class="flyx__row--remove">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flyx__item">
+                <div class="flyx__draggable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </div>
+                <div class="flyx__content">
+                    <div class="flyx__content--right">
+                        <div class="flyx__image">
+                            <img src="../assets/images/me_blue.jpg" alt="Iharena Dev" />
+
+                            <button class="flyx__replace">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flyx__infos">
+                            <div>PNG</div>
+                            <div>10.01 KB</div>
+                            <div>
+                                <a href="#">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flyx__alt flyx__content--left">
+                        <label for="media-name-2">Name</label>
+                        <input type="text" id="media-name-2" class="flyx__alt__input" value="Iharena__image-1.png"/>
+                    </div>
+                    <div class="flyx__row--remove">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flyx__add-button">
+            <button class="flyx__add-button--drop-area">
+                <div class="flyx__add-button--drop-area__icon">
+                    <div class="square">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                </div>
+                  
+                <label class="flyx__add-button--drop-area__text">
+                    <input type="file" class="flyx__input-file flyx__input-file--hidden" accept="image/png, image/jpeg" multiple>
+                    Select or drag max 3 files | PNG, JPEG | < 1024KB
+                </label>
+            </button>
+        </div>
+    </div>
+
+    <div class="flyx flyx--empty">
+        <div class="flyx__add-button">
+            <button class="flyx__add-button--drop-area">
+                <div class="flyx__add-button--drop-area__icon">
+                    <div class="square">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                </div>
+                  
+                <label class="flyx__add-button--drop-area__text">
+                    <input type="file" class="flyx__input-file flyx__input-file--hidden" accept="image/png, image/jpeg" multiple>
+                    Select or drag max 3 files | PNG, JPEG | < 1024KB
+                </label>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
