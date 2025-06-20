@@ -2,7 +2,8 @@
   "name": "flyx",
   "version": "1.0.0",
   "scripts": {
-    "dev": "sass --watch src/assets/scss:src/assets/css --style=compressed --watch"
+    "dev": "sass --watch src/assets/scss:src/assets/css --style=compressed --watch",
+    "build": "sass src/assets/scss:src/assets/css --style=compressed"
   },
   "author": "",
   "license": "ISC",
